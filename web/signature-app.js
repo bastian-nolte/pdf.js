@@ -1,5 +1,6 @@
 var wrapper = document.getElementById("signature-pad");
 var clearButton = wrapper.querySelector("[data-action=clear]");
+var breakButton = wrapper.querySelector("[data-action=break]");
 var saveSVGButton = wrapper.querySelector("[data-action=save-svg]");
 var canvas = wrapper.querySelector("canvas");
 var signaturePad = new SignaturePad(canvas, {
@@ -73,6 +74,12 @@ function dataURLToBlob(dataURL) {
 
 clearButton.addEventListener("click", function (event) {
   signaturePad.clear();
+});
+
+breakButton.addEventListener("click", function() {
+  signaturePad.clear();
+  document.getElementById('overlayContainer').classList.add("hidden");
+  document.getElementById('signaturePadOverlay').classList.add("hidden");
 });
 
 saveSVGButton.addEventListener("click", function (event) {
