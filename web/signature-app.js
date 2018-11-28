@@ -86,7 +86,10 @@ saveSVGButton.addEventListener("click", function (event) {
   if (signaturePad.isEmpty()) {
     alert("Please provide a signature first.");
   } else {
-    document.getElementById(signaturePad.signatureFormFieldName).style.background = `url('data:image/svg+xml;utf8,${signaturePad._toSVGplain()}')`;
+    var padElement = document.getElementById(signaturePad.signatureFormFieldName);
+    padElement.style.background = `url('data:image/svg+xml;utf8,${signaturePad._toSVGplain()}')`;
+    padElement.style.backgroundSize = 'contain';
+    padElement.style.backgroundRepeat = 'no-repeat';
     document.getElementById('overlayContainer').classList.add("hidden");
     document.getElementById('signaturePadOverlay').classList.add("hidden");
   }
