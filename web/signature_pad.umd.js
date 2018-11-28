@@ -460,7 +460,7 @@
         }
       }
     };
-    SignaturePad.prototype._toSVG = function () {
+    SignaturePad.prototype._toSVGplain = function () {
       var _this = this;
       var pointGroups = this._data;
       var ratio = Math.max(window.devicePixelRatio || 1, 1);
@@ -499,7 +499,6 @@
         circle.setAttribute('fill', color);
         svg.appendChild(circle);
       });
-      var prefix = 'data:image/svg+xml;base64,';
       var header = '<svg' +
         ' xmlns="http://www.w3.org/2000/svg"' +
         ' xmlns:xlink="http://www.w3.org/1999/xlink"' +
@@ -518,8 +517,12 @@
         body = dummy.innerHTML;
       }
       var footer = '</svg>';
-      var data = header + body + footer;
-      return prefix + btoa(data);
+      return header + body + footer;
+    };
+
+    SignaturePad.prototype._toSVG = function () {
+      var prefix = 'data:image/svg+xml;base64,';
+      return prefix + btoa(this._toSVGplain());
     };
     return SignaturePad;
   }());

@@ -86,7 +86,8 @@ saveSVGButton.addEventListener("click", function (event) {
   if (signaturePad.isEmpty()) {
     alert("Please provide a signature first.");
   } else {
-    var dataURL = signaturePad.toDataURL('image/svg+xml');
-    download(dataURL, "signature.svg");
+    document.getElementById(signaturePad.signatureFormFieldName).style.background = `url('data:image/svg+xml;utf8,${signaturePad._toSVGplain()}')`;
+    document.getElementById('overlayContainer').classList.add("hidden");
+    document.getElementById('signaturePadOverlay').classList.add("hidden");
   }
 });
