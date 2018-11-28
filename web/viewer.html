@@ -40,6 +40,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#endif-->
 
     <link rel="stylesheet" href="viewer.css">
+    <link rel="stylesheet" href="signature-pad.css">
 <!--#if !PRODUCTION-->
     <link rel="resource" type="application/l10n" href="locale/locale.properties">
 <!--#endif-->
@@ -48,7 +49,7 @@ See https://github.com/adobe-type-tools/cmap-resources
     <script src="../node_modules/systemjs/dist/system.js"></script>
     <script src="../systemjs.config.js"></script>
 <!--#endif-->
-
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <!--#if (GENERIC && !MINIFIED) -->
 <!--#include viewer-snippet.html-->
 <!--#endif-->
@@ -406,6 +407,25 @@ See https://github.com/adobe-type-tools/cmap-resources
             </div>
           </div>
         </div>
+<div id="signaturePadOverlay" class="container hidden">
+        <div id="signature-pad" class="signature-pad">
+          <div class="signature-pad--body">
+            <canvas></canvas>
+          </div>
+          <div class="signature-pad--footer">
+            <div class="description">Sign above</div>
+
+            <div class="signature-pad--actions">
+              <div>
+                <button type="button" class="button clear" data-action="clear">Unterschriftenfeld leeren</button>
+              </div>
+              <div>
+                <button type="button" class="button save" data-action="save-svg">Unterschrift bestätigen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
 <!--#endif-->
 <!--#if CHROME-->
 <!--#include viewer-snippet-chrome-overlays.html-->
@@ -414,5 +434,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+  <script src="signature_pad.umd.js"></script>
+  <script src="signature-app.js"></script>
   </body>
 </html>

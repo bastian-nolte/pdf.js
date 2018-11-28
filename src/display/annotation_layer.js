@@ -295,6 +295,14 @@ class LinkAnnotationElement extends AnnotationElement {
     link.onclick = function() {
       console.log(`Signature process for ${link.id} started`);
       document.getElementById(link.id).style.backgroundColor = 'red';
+      document.getElementById('overlayContainer').classList.remove("hidden");
+      document.getElementById('signaturePadOverlay').classList.remove("hidden");
+      signaturePad.penColor = 'darkblue';
+      // Trigger resize event in ie compatible way
+      var resizeEvent = window.document.createEvent('UIEvents');
+      resizeEvent .initUIEvent('resize', true, false, window, 0);
+      window.dispatchEvent(resizeEvent);
+      // eoTrigger
     };
 
     if (!data.url) {
