@@ -284,15 +284,18 @@ class LinkAnnotationElement extends AnnotationElement {
   render() {
     this.container.className = 'linkAnnotation';
 
-    let { data, linkService, } = this;
+    let { data, } = this;
     let link = document.createElement('a');
 
-    addLinkAttributes(link, {
-      url: data.url,
-      target: (data.newWindow ?
-               LinkTarget.BLANK : linkService.externalLinkTarget),
-      rel: linkService.externalLinkRel,
-    });
+    link.id = `signature-field-${data.fieldName}`;
+    link.title = `Signature-${link.id}`;
+    link.target = '_self';
+    link.rel = 'noopener noreferrer nofollow';
+
+    link.onclick = function() {
+      console.log(`Signature process for ${link.id} started`);
+      document.getElementById(link.id).style.backgroundColor = 'red';
+    };
 
     if (!data.url) {
       if (data.action) {
